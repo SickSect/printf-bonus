@@ -8,6 +8,6 @@ void ft_bzero_flg(flg_stc *flg)
       flg->flg_spc = '0';
       flg->flg_zro = '0';
       flg->width = 0;
-      flg->press = '0';
+      flg->press = 0;
       flg->type = '0';
 }
