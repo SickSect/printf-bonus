@@ -2,34 +2,34 @@
 
 void ft_bzero_flg(flg_stc *flg)
 {
-      flg->flg_mns = '0';
-      flg->flg_pls = '0';
-      flg->flg_okt = '0';
-      flg->flg_spc = '0';
-      flg->flg_zro = '0';
+      flg->flg_mns = 0;
+      flg->flg_pls = 0;
+      flg->flg_okt = 0;
+      flg->flg_spc = 0;
+      flg->flg_zro = 0;
       flg->width = 0;
       flg->press = 0;
       flg->type = '0';
 }
 
-int ft_catch_flgs(flg_stc *flg, char ch)
+int ft_catch_flgs(flg_stc *flg, const char str)
 {
-      if(str[*pos] == '-')
+      if(str == '-')
         flg->flg_mns = 1;
-      else if(str[*pos] == '+')
+      else if(str == '+')
         flg->flg_pls = 1;
-      else if(str[*pos] == '#')
+      else if(str== '#')
         flg->flg_okt = 1;
-      else if(str[*pos] == ' ')
+      else if(str== ' ')
         flg->flg_spc = 1;
-      else if (str[*pos] == '0')
+      else if (str == '0')
         flg->flg_zro = 1;
       else
         return (1);
     return (0);
 }
 
-int ft_catch_width(flg_stc *flg, char *str, int *pos, int *bytes)
+int ft_catch_width(const char *str, int *pos, int *bytes)
 {
     char *width;
 
@@ -38,13 +38,14 @@ int ft_catch_width(flg_stc *flg, char *str, int *pos, int *bytes)
         return (0);
     while(str[*pos] >= 48 && str[*pos] <= 57)
     {
-        width = ft_strjoin(width,str[*pos++]);
+        width = ft_strjoin(width,str[*pos]);
         (*bytes)++;
+        (*pos)++;
     }
     return (atoi(width));
 }
 
-int ft_catch_press(flg_stc *flg, char *str, int *pos, int *bytes)
+int ft_catch_press(const char *str, int *pos, int *bytes)
 {
     char *press;
 
@@ -53,8 +54,15 @@ int ft_catch_press(flg_stc *flg, char *str, int *pos, int *bytes)
         return (0);
     while(str[*pos] >= 48 && str[*pos] <= 57)
     {
-        press = ft_strjoin(press,str[*pos++]);
+        press = ft_strjoin(press,str[*pos]);
         (*bytes)++;
+        (*pos)++;
     }
     return (atoi(press));
+}
+
+char ft_find_type(const char str)
+{
+    char ret = str;
+    return(ret);
 }
