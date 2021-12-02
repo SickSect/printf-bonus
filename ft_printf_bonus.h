@@ -4,6 +4,7 @@
 # ifndef TYPER
 #  define TYPER "dscuxXp"
 # endif
+
 struct flg_stc
 {
   char flg_mns;
@@ -13,6 +14,7 @@ struct flg_stc
   char flg_zro;
   int   width;
   int   press;
+  char *size;
   char type;
 }; typedef struct flg_stc flg_stc;
 

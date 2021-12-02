@@ -1,12 +1,14 @@
 #include "ft_printf_bonus.h"
 
-void ft_catch_flg (int *bytes,flg_stc *flg, const char *str,int *pos)
+void ft_catch_flg(int *bytes,flg_stc *flg, const char *str,int *pos)
 {
   int cycle;
   char *width;
+  char *press;
 
   cycle = 0;
   width = ft_strdup("\0");
+  press = ft_strdup("\0");
   // check flags
   while(cycle == 0)
   {
@@ -29,7 +31,7 @@ void ft_catch_flg (int *bytes,flg_stc *flg, const char *str,int *pos)
   cycle = 0;
   while(cycle == 0)
   {
-        if(str[*pos] >= 49 && str[*pos] <= 57)
+        if(str[*pos] >= 48 && str[*pos] <= 57)
         {
           width = ft_strjoin(width,str[*pos]);
           //printf("\nwrite width %s\n",width);
@@ -42,6 +44,22 @@ void ft_catch_flg (int *bytes,flg_stc *flg, const char *str,int *pos)
     flg->width = atoi(width);
   else
     flg->width = 0;
+
+  if(str[*pos] == '.')
+  {
+    if(str[*pos] >= 48 && str[*pos] <= 57)
+    {
+      press = ft_strjoin(press,str[*pos]);
+      //printf("\nwrite width %s\n",width);
+    }
+    else
+      cycle = 1;
+  (*pos)++;
+  }
+  if(press)
+    flg->press = atoi(press);
+  else
+    flg->press = 0;
   //printf("\nalready write width %d",flg->width);
 }
 
@@ -62,6 +80,8 @@ int ft_printf(const char *stroke, ...)
     {
       i++;
       ft_catch_flg (&bytes, &flg, stroke, &i);
+      // обработка вывода
+      ft_bzero_flg(&flg);
     }
     else
       ft_putchar(stroke[i]);
@@ -70,6 +90,5 @@ int ft_printf(const char *stroke, ...)
   printf("\nFLAGS : MNS %c PLS %c OKT %c SPC %c ZRO %c\n Width: %d",
   flg.flg_mns,flg.flg_pls,flg.flg_okt,flg.flg_spc,flg.flg_zro,flg.width);
   va_end(arg);
-  ft_bzero_flg(&flg);
   return(bytes);
 }
