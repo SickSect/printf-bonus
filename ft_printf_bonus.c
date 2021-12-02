@@ -2,65 +2,25 @@
 
 void ft_catch_flg(int *bytes,flg_stc *flg, const char *str,int *pos)
 {
-  int cycle;
   char *width;
   char *press;
 
-  cycle = 0;
   width = ft_strdup("\0");
   press = ft_strdup("\0");
   // check flags
-  while(cycle == 0)
+  while(ft_catch_flgs(flg,str[*pos]) == 0)
   {
-    if(str[*pos] == '-')
-      flg->flg_mns = '1';
-    else if(str[*pos] == '+')
-      flg->flg_pls = '1';
-    else if(str[*pos] == '#')
-      flg->flg_okt = '1';
-    else if(str[*pos] == ' ')
-      flg->flg_spc = '1';
-    else if (str[*pos] == '0')
-      flg->flg_zro = '1';
-    else
-      cycle = 1;
-    (*pos)++;
-    (*bytes)++;
-  }
-  (*pos)--;
-  cycle = 0;
-  while(cycle == 0)
-  {
-        if(str[*pos] >= 48 && str[*pos] <= 57)
-        {
-          width = ft_strjoin(width,str[*pos]);
-          //printf("\nwrite width %s\n",width);
-        }
-        else
-          cycle = 1;
       (*pos)++;
+      (*bytes)++;
   }
-  if(width)
-    flg->width = atoi(width);
-  else
-    flg->width = 0;
-
-  if(str[*pos] == '.')
-  {
-    if(str[*pos] >= 48 && str[*pos] <= 57)
-    {
-      press = ft_strjoin(press,str[*pos]);
-      //printf("\nwrite width %s\n",width);
-    }
-    else
-      cycle = 1;
   (*pos)++;
+  flg->width = ft_catch_width(flg, str, pos, bytes);
+  if(str[++(*pos) == '.'])
+  {
+    flg->press = ft_catch_press(flg, str, pos, bytes);
+    (*pos)++;
   }
-  if(press)
-    flg->press = atoi(press);
-  else
-    flg->press = 0;
-  //printf("\nalready write width %d",flg->width);
+  flg->type = ft_find_type(str[++(*pos)]);
 }
 
 int ft_printf(const char *stroke, ...)

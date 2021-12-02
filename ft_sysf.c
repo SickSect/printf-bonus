@@ -97,8 +97,7 @@ char	*ft_strjoin(char *s1, char s2)
 	}
 	if (!s1)
 		return (NULL);
-	str = (char *)malloc(sizeof(*s1) * ((ft_strlen((char *)s1))
-				+ 2));
+	str = (char *)malloc(sizeof(*s1) * ((ft_strlen((char *)s1)) + 2));
 	if (!str)
 		return (NULL);
 	j = 0;
