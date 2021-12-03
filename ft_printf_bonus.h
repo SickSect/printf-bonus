@@ -33,6 +33,7 @@ int	ft_atoi(const char *str);
 int	ft_strlen(const char *str);
 void	ft_bzero(void *dest, size_t n);
 void	ft_bzero_char(void *dest, size_t n);
+void	ft_putnbr_fd(int n, int *bytes);
 
 int ft_catch_flgs(flg_stc *flg, const char str);
 int ft_catch_wp(const char *str, int *pos);
@@ -43,5 +44,6 @@ void ft_correct_flg(flg_stc *flg);
 
 void ft_digit(int n, int *bytes,flg_stc *flg);
 char	*ft_itoa(int n);
+
 
 #endif

@@ -41,8 +41,8 @@ int ft_catch_wp(const char *str, int *pos)
         size= ft_strjoin_char(size,str[*pos]);
         (*pos)++;
     }
-    if(!size)
-      return (0);
+    if(ft_strlen(size) == 0)
+      return (-1);
     else
       return (atoi(size));
 }
