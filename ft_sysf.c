@@ -170,13 +170,14 @@ static int	ft_moder(int n)
 		return (n);
 }
 
-void	ft_putnbr_fd(int n, int *bytes)
+void	ft_putnbr(int n, int *bytes)
 {
 	char	str[13];
 	int		neg;
 	int		i;
 
 	i = 0;
+	neg = 1;
 	if (n < 0)
 		neg = -1;
 	ft_bzero(str, 13);

@@ -15,9 +15,9 @@ void ft_catch_flg(va_list arg,flg_stc *flg, const char *str,int *pos)
   }
   else
       flg->width = ft_catch_wp(str, pos);
-  if(str[(*pos)++] == '.')
+  if(str[*pos] == '.')
   {
-        if(str[*pos] == '*')
+        if(str[++(*pos)] == '*')
         {
             flg->press = va_arg(arg,int);
             (*pos)++;
@@ -52,9 +52,9 @@ int ft_printf(const char *stroke, ...)
     {
       i++;
       ft_catch_flg (arg, &flg, stroke, &i);
+      //printf("MNS %d PLS %d OKT %d SPC %d ZRO %d W: %d P: %d B: %d T: %c\n",
+      //flg.flg_mns,flg.flg_pls,flg.flg_okt,flg.flg_spc,flg.flg_zro,flg.width,flg.press,bytes,flg.type);
       ft_output(arg, &flg, &bytes);
-      printf("\nMNS %d PLS %d OKT %d SPC %d ZRO %d W: %d P: %d B: %d T: %c\n",
-      flg.flg_mns,flg.flg_pls,flg.flg_okt,flg.flg_spc,flg.flg_zro,flg.width,flg.press,bytes,flg.type);
       ft_bzero_flg(&flg);
     }
     else

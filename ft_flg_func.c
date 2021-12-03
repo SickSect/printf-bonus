@@ -10,6 +10,7 @@ void ft_bzero_flg(flg_stc *flg)
       flg->width = 0;
       flg->press = 0;
       flg->type = '0';
+      flg->prs = '0';
 }
 
 int ft_catch_flgs(flg_stc *flg, const char str)
@@ -63,4 +64,6 @@ void ft_correct_flg(flg_stc *flg)
             flg->flg_zro = 0;
       if (flg->flg_pls == 1)
             flg->flg_spc = 0;
+      if(flg->flg_zro == 0)
+            flg->prs = ' ';
 }
