@@ -29,40 +29,35 @@ int ft_catch_flgs(flg_stc *flg, const char str)
     return (0);
 }
 
-int ft_catch_width(const char *str, int *pos, int *bytes)
+int ft_catch_wp(const char *str, int *pos)
 {
-    char *width;
+    char *size;
 
-    width = ft_strdup("\0");
+    size = ft_strdup("\0");
     if(str[*pos] == '0')
         return (0);
     while(str[*pos] >= 48 && str[*pos] <= 57)
     {
-        width = ft_strjoin(width,str[*pos]);
-        (*bytes)++;
+        size= ft_strjoin(size,str[*pos]);
         (*pos)++;
     }
-    return (atoi(width));
-}
-
-int ft_catch_press(const char *str, int *pos, int *bytes)
-{
-    char *press;
-
-    press = ft_strdup("\0");
-    if(str[*pos] == '0')
-        return (0);
-    while(str[*pos] >= 48 && str[*pos] <= 57)
-    {
-        press = ft_strjoin(press,str[*pos]);
-        (*bytes)++;
-        (*pos)++;
-    }
-    return (atoi(press));
+    return (atoi(size));
 }
 
 char ft_find_type(const char str)
 {
-    char ret = str;
-    return(ret);
+      if(str == 'd' || str == 's' || str == 'x'
+      || str == 'X' || str == 'i' || str == '%'
+      || str == 'u' || str == 'p')
+            return (str);
+      else
+            return ('Q');
+}
+
+void ft_correct_flg(flg_str *flg)
+{
+      if (flg->flg_mns == 1)
+            flg->flg_zro = 0;
+      if(flg->flg_pls == 1)
+            flg->spc = 0;
 }

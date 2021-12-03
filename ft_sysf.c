@@ -69,9 +69,10 @@ char	*ft_strdup(const char *str_s)
 	return (str);
 }
 
-void	ft_putchar(char c)
+void	ft_putchar(char c,int *bytes)
 {
 	write (1, &c, 1);
+	(*bytes)++;
 }
 
 int	ft_strlen(const char *str)
