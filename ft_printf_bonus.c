@@ -26,7 +26,16 @@ void ft_catch_flg(va_list arg,flg_stc *flg, const char *str,int *pos)
             flg->press = ft_catch_wp(str, pos);
   }
   flg->type = ft_find_type(str[*pos]);
+  ft_correct_flg(flg);
 }
+/*
+void ft_output(va_list arg, flg_stc *flg, int *bytes)
+{
+      if(flg->type == 'd')
+            ft_digit(va_arg(arg,int),bytes, flg);
+
+}
+*/
 
 int ft_printf(const char *stroke, ...)
 {
@@ -45,9 +54,9 @@ int ft_printf(const char *stroke, ...)
     {
       i++;
       ft_catch_flg (arg, &flg, stroke, &i);
-      printf("\nFLAGS : MNS %d PLS %d OKT %d SPC %d ZRO %d\n Width: %d Press: %d Bytes: %d Type: %c\n",
-      flg.flg_mns,flg.flg_pls,flg.flg_okt,flg.flg_spc,flg.flg_zro,flg.width,flg.press,bytes,flg.type);
-      // обработка вывода
+      //printf("\nFLAGS : MNS %d PLS %d OKT %d SPC %d ZRO %d\n Width: %d Press: %d Bytes: %d Type: %c\n",
+      //flg.flg_mns,flg.flg_pls,flg.flg_okt,flg.flg_spc,flg.flg_zro,flg.width,flg.press,bytes,flg.type);
+
       ft_bzero_flg(&flg);
     }
     else

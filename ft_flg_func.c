@@ -38,10 +38,13 @@ int ft_catch_wp(const char *str, int *pos)
         return (0);
     while(str[*pos] >= 48 && str[*pos] <= 57)
     {
-        size= ft_strjoin(size,str[*pos]);
+        size= ft_strjoin_char(size,str[*pos]);
         (*pos)++;
     }
-    return (atoi(size));
+    if(!size)
+      return (0);
+    else
+      return (atoi(size));
 }
 
 char ft_find_type(const char str)
@@ -54,10 +57,10 @@ char ft_find_type(const char str)
             return ('Q');
 }
 
-void ft_correct_flg(flg_str *flg)
+void ft_correct_flg(flg_stc *flg)
 {
       if (flg->flg_mns == 1)
             flg->flg_zro = 0;
-      if(flg->flg_pls == 1)
-            flg->spc = 0;
+      if (flg->flg_pls == 1)
+            flg->flg_spc = 0;
 }
