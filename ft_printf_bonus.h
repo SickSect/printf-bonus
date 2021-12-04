@@ -36,12 +36,10 @@ void	ft_bzero(void *dest, size_t n);
 void	ft_bzero_char(void *dest, size_t n);
 void	ft_putnbr(int n, int *bytes);
 
-int ft_catch_flgs(flg_stc *flg, const char str);
 int ft_catch_wp(const char *str, int *pos);
 char ft_find_type(const char str);
-void ft_catch_flg(va_list arg,flg_stc *flg, const char *str, int *pos);
+int ft_catch_flg(va_list arg,flg_stc *flg, const char *str, int *pos);
 void ft_bzero_flg(flg_stc *flg);
-void ft_correct_flg(flg_stc *flg);
 
 void ft_digit(int n, int *bytes,flg_stc *flg);
 char	*ft_itoa(int n);

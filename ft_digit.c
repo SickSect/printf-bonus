@@ -1,6 +1,6 @@
 #include "ft_printf_bonus.h"
 
-static int ft_numlen(int n)
+int ft_numlen(int n)
 {
       int len;
 
@@ -13,7 +13,7 @@ static int ft_numlen(int n)
       return(len + 1);
 }
 
-static void ft_filler(char ch, int counter,int *bytes)
+void ft_filler(char ch, int counter,int *bytes)
 {
     int i;
 
@@ -27,18 +27,31 @@ static void ft_filler(char ch, int counter,int *bytes)
 
 void ft_digit(int n, int *bytes,flg_stc *flg)
 {
-    int i;
     char sign;
+    int i;
 
     i = 0;
-
-    if(flg->press < ft_numlen(n))
-        flg->press = ft_numlen(n);
+    sign = '+';
     if(n < 0)
+    {
         sign = '-';
+        n *= -1;
+    }
+
+    if (flg->width > flg->press)
+        i = flg->width - ft_numlen(n);
     else
-        sign = '+';
+        i = flg->press - ft_numlen(n);
+
+    if(flg->press > flg->width || flg->width > flg->press)
+    {
+        
+    }
 
 
-    ft_putnbr(n,bytes);
+    (void)n;
+    (void)bytes;
+    (void)flg;
+    (void)i;
+    (void)sign;
 }
