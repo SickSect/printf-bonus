@@ -35,6 +35,7 @@ int	ft_strlen(const char *str);
 void	ft_bzero(void *dest, size_t n);
 void	ft_bzero_char(void *dest, size_t n);
 void	ft_putnbr(int n, int *bytes);
+void	ft_putstr(char *s, int *bytes);
 
 int ft_catch_wp(const char *str, int *pos);
 char ft_find_type(const char str);

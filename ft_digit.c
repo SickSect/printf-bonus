@@ -1,64 +1,52 @@
 #include "ft_printf_bonus.h"
 
-int ft_filllen(int num, flg_stc *flg)
+int ft_numlen(int n)
 {
-      int len;
-      int ret;
-      int n;
+    int len;
+    int num;
 
-      n = num;
-      len = 0;
-      while(n / 10 != 0)
-      {
-            n /= 10;
-            len++;
-      }
-      len++;
-      if (flg-> press <= 0 && flg->width > len)
-        ret = flg->width - len;
-      else if(flg->press > flg->width && flg->press > len)
-        ret = flg->press - len;
-      else
-        ret = len;
-
-      return (ret);
-}
-
-void ft_filler(char ch, int counter,int *bytes)
-{
-    int i;
-
-    i = 0;
-    while(i < counter)
+    if (n < 0)
+        num = n * -1;
+    else
+        num = n;
+    len = 0;
+    while (num / 10)
     {
-        ft_putchar(ch,bytes);
-        i++;
+        len++;
+        num /= 10;
+    }
+    return(len + 1);
+}
+void ft_putsign(flg_stc *flg, int n, char *sign)
+{
+    if (n < 0)
+        *sign = '-';
+    else
+    {
+        if (flg->flg_spc == 1)
+            *sign = ' ';
+        if (flg->flg_pls == 1)
+            *sign = '+';
     }
 }
 
 void ft_digit(int n, int *bytes,flg_stc *flg)
 {
     char sign;
-    int i;
+    ft_putsign(flg, n, &sign);
+    if(flg->press == -1)
+    {
+        if(flg->flg_mns == 1)
+        {
 
-    i = 0;
-    sign = '+';
-    i = ft_filllen(n, flg);
-    if (flg->press < flg->width && flg->flg_mns == 1)
-    {
-      ft_putchar('H',bytes);
+        }
     }
-    else if (flg->flg_zro == 1 || flg->press > flg->width)
+    else if(flg->press >= 0)
     {
-      ft_putchar('A', bytes);
-    }
-    else if (flg->press == 0)
-    {
-      ft_putchar('B', bytes);
+
     }
     (void)n;
     (void)bytes;
     (void)flg;
-    (void)i;
     (void)sign;
 }

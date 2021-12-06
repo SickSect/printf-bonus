@@ -1,5 +1,19 @@
 #include "ft_printf_bonus.h"
 
+void	ft_putstr(char *s, int *bytes)
+{
+	size_t	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar(s[i], bytes);
+		i++;
+	}
+}
+
 void	ft_bzero(void *dest, size_t n)
 {
 	size_t	i;

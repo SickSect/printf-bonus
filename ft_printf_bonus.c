@@ -59,7 +59,6 @@ int ft_printf(const char *stroke, ...)
   va_list arg;
   flg_stc flg;
   va_start (arg,stroke);
-
   ft_bzero_flg(&flg);
   i = 0;
   bytes = 0;
