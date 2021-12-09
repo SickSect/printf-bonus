@@ -21,13 +21,16 @@ void ft_catch_flg(va_list arg,flg_stc *flg, const char *str)
             flg->press = ft_catch_wp(str, flg);
   }
   flg->type = ft_find_type(str[flg->id]);
-  //printf("%d %d %d %d %d %c\n", flg->zro, flg->mns, flg->spc, flg->okt, flg->pls, flg->type);
 }
 
 void ft_linker(flg_stc *flg)
 {
-  if(flg->type == 'd')
+  if(flg->type == 'd' || flg->type == 'i')
     ft_digit(va_arg(flg->arg, int), flg);
+  else if(flg->type == 'c')
+    ft_char(va_arg(flg->arg, int), flg);
+  else if(flg->type == 's')
+    ft_string(va_arg(flg->arg, char *), flg);
 }
 
 int ft_printf(const char *stroke, ...)
@@ -52,8 +55,8 @@ int ft_printf(const char *stroke, ...)
     flg->id++;
   }
   bytes = flg->bytes;
-  free(flg);
   va_end(flg->arg);
+  free(flg);
   //printf(" BYTES: %ld", flg->bytes);
   return(bytes);
 }

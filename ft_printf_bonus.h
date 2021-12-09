@@ -28,18 +28,22 @@ int ft_catch_wp(const char *str, flg_stc *flg);
 char ft_find_type(const char str);
 void ft_bzero_flg(flg_stc *flg);
 
-void	ft_putchar(char c,flg_stc *flg);
-int	ft_atoi(const char *str);
+void	ft_putchar(int c,flg_stc *flg);
+int	    ft_atoi(const char *str);
 void	ft_putstr(char *s, flg_stc *flg);
 char	*ft_strdup(const char *str_s);
 char	*ft_strjoin_char(char *s1, char s2);
 char	*ft_strjoin(char const *s1, char const *s2);
-int	ft_strlen(const char *str);
-void	ft_putnbr(int n, flg_stc *flg);
+int     ft_strlen(const char *str);
+void	ft_putnbr(long n, flg_stc *flg);
 
 void ft_digit(long int n, flg_stc *flg);
 void ft_output_sign(flg_stc *flg, int n);
 int ft_if_sign(flg_stc *flg, int n);
+
+int ft_char(int ch, flg_stc *flg);
+int ft_string(char *str, flg_stc *flg);
+void ft_filler(char fill, int counter, flg_stc *flg);
 
 
 #endif

@@ -58,7 +58,7 @@ char ft_find_type(const char str)
 {
       if(str == 'd' || str == 's' || str == 'x'
       || str == 'X' || str == 'i' || str == '%'
-      || str == 'u' || str == 'p')
+      || str == 'u' || str == 'p' || str == 'c')
             return (str);
       else
             return ('Q');

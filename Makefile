@@ -1,6 +1,7 @@
 name = libftprintf.a
 src =	ft_printf.c ft_put_d_bz.c ft_uns_hex_s.c
-src_bonus = ft_printf_bonus.c ft_flg_bonus.c ft_sys_bonus.c ft_digit_bonus.c
+src_bonus = ft_printf_bonus.c ft_flg_bonus.c ft_sys_bonus.c ft_digit_bonus.c \
+	ft_char_bonus.c
 obj = $(src:.c=.o)
 obj_bonus = $(src_bonus:.c=.o)
 rm = rm -f
@@ -15,8 +16,8 @@ all: $(name)
 %bonus.o : %bonus.c ft_printf_bonus.h
 	gcc -Wall -Werror -Wextra -c $<
 
-bonus: $(obj) $(obj_bonus)
-		ar rc $(name) $(obj_bonus)
+bonus: $(obj_bonus)
+	ar rc $(name) $(obj_bonus)
 
 clean:
 	$(rm) $(obj) $(obj_bonus)

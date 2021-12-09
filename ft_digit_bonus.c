@@ -49,9 +49,9 @@ void ft_output_sign(flg_stc *flg, int n)
 }
 void ft_digit(long int n, flg_stc *flg)
 {
+    ft_output_sign(flg, n);
     if(flg->mns == 1)
     {
-        ft_output_sign(flg, n);
         ft_filler('0', flg->press - ft_numlen(n), flg);
         if (n > 0)
           ft_putnbr(n, flg);
@@ -64,7 +64,6 @@ void ft_digit(long int n, flg_stc *flg)
     }
     else if (flg->zro == 1)
     {
-      ft_output_sign(flg, n);
       ft_filler('0', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
       if (n > 0)
         ft_putnbr(n, flg);

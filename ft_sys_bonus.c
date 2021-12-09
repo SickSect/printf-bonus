@@ -3,11 +3,16 @@
 void	ft_putstr(char *s, flg_stc *flg)
 {
 	size_t	i;
+	size_t lb;
 
+	if(flg->press > 0)
+		lb = flg->press;
+	else
+		lb = ft_strlen(s);
 	if (!s)
 		return ;
 	i = 0;
-	while (s[i])
+	while (s[i] && lb)
 	{
 		ft_putchar(s[i], flg);
 		i++;
@@ -107,7 +112,7 @@ char	*ft_strdup(const char *str_s)
 	return (str);
 }
 
-void	ft_putchar(char c,flg_stc *flg)
+void	ft_putchar(int c,flg_stc *flg)
 {
 	write (1, &c, 1);
 	flg->bytes++;
@@ -184,11 +189,11 @@ static int	ft_moder(int n)
 		return (n);
 }
 
-void	ft_putnbr(int n, flg_stc *flg)
+void	ft_putnbr(long n, flg_stc *flg)
 {
 	char	str[13];
 	int		neg;
-	int		i;
+	long		i;
 
 	i = 0;
 	neg = 1;
