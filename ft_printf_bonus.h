@@ -1,49 +1,45 @@
 #ifndef FT_PRINTF_BONUS_H
 # define FT_PRINTF_BONUS_H
 
-# ifndef TYPER
-#  define TYPER "dscuxXp"
-# endif
-
-struct flg_stc
-{
-  _Bool flg_mns;
-  _Bool flg_okt;
-  _Bool flg_spc;
-  _Bool flg_pls;
-  _Bool flg_zro;
-  int   width;
-  int   press;
-  char type;
-  char prs;
-}; typedef struct flg_stc flg_stc;
-
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
 
-int main();
-void	ft_putchar(char c,int *bytes);
-int ft_printf(const char *str, ...);
+struct flg_stc
+{
+  va_list arg;
+  int id;
+  int mns;
+  int okt;
+  int spc;
+  int pls;
+  int zro;
+  int width;
+  int press;
+  char type;
+  long int bytes;
+}; typedef struct flg_stc flg_stc;
 
-char	*ft_strjoin_char(char *s1, char s2);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *str_s);
-int	ft_atoi(const char *str);
-int	ft_strlen(const char *str);
-void	ft_bzero(void *dest, size_t n);
-void	ft_bzero_char(void *dest, size_t n);
-void	ft_putnbr(int n, int *bytes);
-void	ft_putstr(char *s, int *bytes);
+int ft_printf(const char *stroke, ...);
 
-int ft_catch_wp(const char *str, int *pos);
+void ft_flagger(flg_stc *flg, const char *str);
+int ft_catch_wp(const char *str, flg_stc *flg);
 char ft_find_type(const char str);
-int ft_catch_flg(va_list arg,flg_stc *flg, const char *str, int *pos);
 void ft_bzero_flg(flg_stc *flg);
 
-void ft_digit(int n, int *bytes,flg_stc *flg);
-char	*ft_itoa(int n);
+void	ft_putchar(char c,flg_stc *flg);
+int	ft_atoi(const char *str);
+void	ft_putstr(char *s, flg_stc *flg);
+char	*ft_strdup(const char *str_s);
+char	*ft_strjoin_char(char *s1, char s2);
+char	*ft_strjoin(char const *s1, char const *s2);
+int	ft_strlen(const char *str);
+void	ft_putnbr(int n, flg_stc *flg);
+
+void ft_digit(long int n, flg_stc *flg);
+void ft_output_sign(flg_stc *flg, int n);
+int ft_if_sign(flg_stc *flg, int n);
 
 
 #endif

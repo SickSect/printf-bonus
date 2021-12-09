@@ -1,82 +1,59 @@
 #include "ft_printf_bonus.h"
 
-int ft_catch_flg(va_list arg,flg_stc *flg, const char *str,int *pos)
+void ft_catch_flg(va_list arg,flg_stc *flg, const char *str)
 {
-  int cycle;
-
-  cycle = 0;
-  while(cycle == 0)
-  {
-      if(str[*pos] == '-')
-        flg->flg_mns = 1;
-      else if(str[*pos] == '+')
-        flg->flg_pls = 1;
-      else if(str[*pos] == '#')
-        flg->flg_okt = 1;
-      else if(str[*pos] == ' ')
-        flg->flg_spc = 1;
-      else if (str[*pos] == '0')
-        flg->flg_zro = 1;
-      else
-        cycle = 1;
-    (*pos)++;
-  }
-
-  (*pos)--;
-  if (str[*pos] == '*')
+  ft_flagger(flg, str);
+  if (str[flg->id] == '*')
   {
         flg->width = va_arg(arg,int);
-        (*pos)++;
+        flg->id += 1;
   }
   else
-      flg->width = ft_catch_wp(str, pos);
-  if(str[*pos] == '.')
+      flg->width = ft_catch_wp(str,flg);
+  if(str[flg->id] == '.')
   {
-      flg->prs = ' ';
-      if(str[++(*pos)] == '*')
+      if(str[++flg->id] == '*')
       {
             flg->press = va_arg(arg,int);
-            (*pos)++;
+            flg->id += 1;
       }
         else
-            flg->press = ft_catch_wp(str, pos);
+            flg->press = ft_catch_wp(str, flg);
   }
-  flg->type = ft_find_type(str[*pos]);
-  //printf("TYPE %c\n",flg->type);
-  return (0);
+  flg->type = ft_find_type(str[flg->id]);
+  //printf("%d %d %d %d %d %c\n", flg->zro, flg->mns, flg->spc, flg->okt, flg->pls, flg->type);
 }
 
-void ft_output(va_list arg, flg_stc *flg, int *bytes)
+void ft_linker(flg_stc *flg)
 {
-    //printf("TYPE %c\n",flg->type);
-    ft_digit(va_arg(arg,int),bytes, flg);
+  if(flg->type == 'd')
+    ft_digit(va_arg(flg->arg, int), flg);
 }
 
 int ft_printf(const char *stroke, ...)
 {
-  int i;
-  int bytes;
-  va_list arg;
-  flg_stc flg;
-  va_start (arg,stroke);
-  ft_bzero_flg(&flg);
-  i = 0;
-  bytes = 0;
-  while(stroke[i] != '\0')
+  flg_stc *flg;
+  long bytes;
+
+  flg = malloc(sizeof(flg_stc));
+  va_start (flg->arg,stroke);
+  flg->id = 0;
+  flg->bytes = 0;
+  while(stroke[flg->id] != '\0')
   {
-    if(stroke[i] == '%')
+    if(stroke[flg->id] == '%' && stroke[++flg->id])
     {
-      i++;
-      ft_catch_flg (arg, &flg, stroke, &i);
-      //printf("\nMNS -%2d PLS -%2d OKT -%2d SPC -%2d ZRO -%2d W: %2d P: %2d B: %2d T: %c\n",
-      //flg.flg_mns, flg.flg_pls, flg.flg_okt, flg.flg_spc, flg.flg_zro, flg.width, flg.press, bytes, flg.type);
-      ft_output(arg, &flg, &bytes);
-      ft_bzero_flg(&flg);
+      ft_bzero_flg(flg);
+      ft_catch_flg(flg->arg, flg, stroke);
+      ft_linker(flg);
     }
     else
-      ft_putchar(stroke[i],&bytes);
-    i++;
+      ft_putchar(stroke[flg->id],flg);
+    flg->id++;
   }
-  va_end(arg);
+  bytes = flg->bytes;
+  free(flg);
+  va_end(flg->arg);
+  //printf(" BYTES: %ld", flg->bytes);
   return(bytes);
 }

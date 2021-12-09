@@ -1,5 +1,5 @@
 name = printf
-src =	ft_printf_bonus.c ft_sysf.c main.c ft_flg_func.c ft_digit.c
+src =	ft_printf_bonus.c ft_flg_bonus.c ft_sys_bonus.c ft_digit_bonus.c main.c
 obj = $(src:.c=.o)
 rm = rm -f
 

@@ -1,6 +1,6 @@
 #include "ft_printf_bonus.h"
 
-void	ft_putstr(char *s, int *bytes)
+void	ft_putstr(char *s, flg_stc *flg)
 {
 	size_t	i;
 
@@ -9,7 +9,7 @@ void	ft_putstr(char *s, int *bytes)
 	i = 0;
 	while (s[i])
 	{
-		ft_putchar(s[i], bytes);
+		ft_putchar(s[i], flg);
 		i++;
 	}
 }
@@ -107,10 +107,10 @@ char	*ft_strdup(const char *str_s)
 	return (str);
 }
 
-void	ft_putchar(char c,int *bytes)
+void	ft_putchar(char c,flg_stc *flg)
 {
 	write (1, &c, 1);
-	(*bytes)++;
+	flg->bytes++;
 }
 
 int	ft_strlen(const char *str)
@@ -184,7 +184,7 @@ static int	ft_moder(int n)
 		return (n);
 }
 
-void	ft_putnbr(int n, int *bytes)
+void	ft_putnbr(int n, flg_stc *flg)
 {
 	char	str[13];
 	int		neg;
@@ -209,7 +209,7 @@ void	ft_putnbr(int n, int *bytes)
 		i--;
 	while (i >= 0)
 	{
-		ft_putchar(str[i],bytes);
+		ft_putchar(str[i], flg);
 		i--;
 	}
 }
