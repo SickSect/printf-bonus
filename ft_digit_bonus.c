@@ -1,6 +1,6 @@
 #include "ft_printf_bonus.h"
 
-int ft_numlen(int n)
+int ft_numlen(long int n)
 {
     int len;
     int num;
@@ -20,7 +20,8 @@ int ft_numlen(int n)
 void ft_filler(char fill, int counter, flg_stc *flg)
 {
   int i;
-
+  if(counter <= 0)
+      return ;
   i = 0;
   while (i < counter)
   {

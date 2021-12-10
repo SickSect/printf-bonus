@@ -31,6 +31,8 @@ void ft_linker(flg_stc *flg)
     ft_char(va_arg(flg->arg, int), flg);
   else if(flg->type == 's')
     ft_string(va_arg(flg->arg, char *), flg);
+  else if (flg->type == 'p')
+    ft_void_pointer(va_arg(flg->arg, void *), flg, "0123456789abcdef");
 }
 
 int ft_printf(const char *stroke, ...)
