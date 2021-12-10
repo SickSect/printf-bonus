@@ -33,6 +33,8 @@ void ft_linker(flg_stc *flg)
     ft_string(va_arg(flg->arg, char *), flg);
   else if (flg->type == 'p')
     ft_void_pointer(va_arg(flg->arg, void *), flg, "0123456789abcdef");
+  else if (flg->type == 'u')
+    ft_utoi(va_arg(flg->arg, unsigned int), flg);
 }
 
 int ft_printf(const char *stroke, ...)

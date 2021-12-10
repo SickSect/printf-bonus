@@ -46,6 +46,7 @@ int ft_string(char *str, flg_stc *flg);
 void ft_filler(char fill, int counter, flg_stc *flg);
 void ft_hex(unsigned long int n,flg_stc *flg, char *base);
 void ft_void_pointer(void *ptr, flg_stc *flg, char *base);
+void ft_utoi(unsigned long int num,flg_stc *flg);
 
 
 #endif

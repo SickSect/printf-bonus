@@ -51,7 +51,15 @@ void ft_hex(unsigned long int n,flg_stc *flg, char *base)
 
 int ft_len(unsigned long int n)
 {
-      
+      int len;
+
+      len = 0;
+      while(n / 16 != 0)
+      {
+        len++;
+        n /= 16;
+      }
+      return(len + 1);
 }
 
 void ft_void_pointer(void *ptr, flg_stc *flg, char *base)
@@ -69,7 +77,7 @@ void ft_void_pointer(void *ptr, flg_stc *flg, char *base)
             {
                   ft_putstr("0x", flg);
                   ft_hex(adress, flg, base);
-                  ft_filler(' ',flg->width - ft_len(adress), flg);
+                  ft_filler(' ',flg->width - ft_len(adress) - 2, flg);
             }
             else
             {
@@ -95,7 +103,6 @@ void ft_void_pointer(void *ptr, flg_stc *flg, char *base)
                    ft_hex(adress, flg, base);
                    if(flg->press < flg->width)
                         ft_filler(' ', flg->width - flg->press - 2, flg);
-
              }
         }
   }
