@@ -218,3 +218,33 @@ void	ft_putnbr(long n, flg_stc *flg)
 		i--;
 	}
 }
+
+int ft_numlen(long int n)
+{
+    int len;
+    int num;
+
+    if (n < 0)
+        num = n * -1;
+    else
+        num = n;
+    len = 0;
+    while (num / 10)
+    {
+        len++;
+        num /= 10;
+    }
+    return(len + 1);
+}
+void ft_filler(char fill, int counter, flg_stc *flg)
+{
+  int i;
+  if(counter <= 0)
+      return ;
+  i = 0;
+  while (i < counter)
+  {
+    ft_putchar(fill, flg);
+    i++;
+  }
+}
