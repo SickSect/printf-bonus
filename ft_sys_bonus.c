@@ -1,18 +1,13 @@
 #include "ft_printf_bonus.h"
 
-void	ft_putstr(char *s, flg_stc *flg)
+void	ft_putstr(char *s, int p, flg_stc *flg)
 {
-	size_t	i;
-	size_t lb;
+	int	i;
 
-	if(flg->press > 0)
-		lb = flg->press;
-	else
-		lb = ft_strlen(s);
 	if (!s)
 		return ;
 	i = 0;
-	while (s[i] && lb)
+	while (s[i] && i < p)
 	{
 		ft_putchar(s[i], flg);
 		i++;
@@ -238,6 +233,8 @@ int ft_numlen(long int n)
 }
 void ft_filler(char fill, int counter, flg_stc *flg)
 {
+	if(counter < 0)
+		return ;
   int i;
   if(counter <= 0)
       return ;

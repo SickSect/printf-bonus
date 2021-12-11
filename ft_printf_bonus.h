@@ -30,7 +30,7 @@ void ft_bzero_flg(flg_stc *flg);
 
 void	ft_putchar(int c,flg_stc *flg);
 int	    ft_atoi(const char *str);
-void	ft_putstr(char *s, flg_stc *flg);
+void	ft_putstr(char *s, int p, flg_stc *flg);
 char	*ft_strdup(const char *str_s);
 char	*ft_strjoin_char(char *s1, char s2);
 char	*ft_strjoin(char const *s1, char const *s2);

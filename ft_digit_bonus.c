@@ -37,8 +37,10 @@ void ft_digit_mns(long int n, flg_stc *flg)
 
 void ft_digit_zro(long int n, flg_stc *flg)
 {
-  ft_filler('0', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
+  if(flg->press > 0)
+    ft_filler(' ', flg->width - flg->press -ft_if_sign(flg, n), flg);
   ft_output_sign(flg, n);
+  ft_filler('0', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
   if (n > 0)
     ft_putnbr(n, flg);
   else

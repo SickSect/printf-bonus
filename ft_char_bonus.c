@@ -17,21 +17,47 @@ int ft_char(int ch,flg_stc *flg)
 
 int ft_string(char *str, flg_stc *flg)
 {
-    int len;
-
-    if(flg->press == -1)
-        len = ft_strlen(str);
-    else
-        len = flg->width - flg->press;
     if(flg->mns == 1)
     {
-        ft_putstr(str, flg);
-        ft_filler(' ', flg->width - len, flg);
+      if(flg->press == -1)
+      {
+        ft_putstr(str, ft_strlen(str), flg);
+        ft_filler(' ', flg->width - ft_strlen(str), flg);
+      }
+      else
+      {
+        if(flg->press < ft_strlen(str))
+        {
+          ft_putstr(str, flg->press, flg);
+          ft_filler(' ', flg->width - flg->press, flg);
+        }
+        else
+        {
+          ft_putstr(str, ft_strlen(str), flg);
+          ft_filler(' ', flg->width - ft_strlen(str), flg);
+        }
+      }
     }
     else
     {
-        ft_filler(' ', flg->width - len, flg);
-        ft_putstr(str, flg);
+      if(flg->press == -1)
+      {
+        ft_filler(' ', flg->width - ft_strlen(str), flg);
+        ft_putstr(str, ft_strlen(str), flg);
+      }
+      else
+      {
+        if(flg->press < ft_strlen(str))
+        {
+          ft_filler(' ', flg->width - flg->press, flg);
+          ft_putstr(str, flg->press, flg);
+        }
+        else
+        {
+          ft_filler(' ', flg->width - ft_strlen(str), flg);
+          ft_putstr(str, ft_strlen(str), flg);
+        }
+      }
     }
     return(0);
 }
@@ -68,20 +94,20 @@ void ft_void_pointer(void *ptr, flg_stc *flg, char *base)
 
   adress = (unsigned long int)ptr;
   if (!adress)
-      ft_putstr("(null)", flg);
+      ft_putstr("(null)", 6, flg);
   else
   {
         if(flg->mns == 1)
         {
             if(flg->press <= 0)
             {
-                  ft_putstr("0x", flg);
+                  ft_putstr("0x", 2, flg);
                   ft_hex(adress, flg, base);
                   ft_filler(' ',flg->width - ft_len(adress) - 2, flg);
             }
             else
             {
-                  ft_putstr("0x", flg);
+                  ft_putstr("0x", 2,flg);
                   ft_filler('0',flg->press - ft_len(adress), flg);
                   ft_hex(adress, flg, base);
                   if(flg->press < flg->width)
@@ -93,12 +119,12 @@ void ft_void_pointer(void *ptr, flg_stc *flg, char *base)
              if(flg->press <= 0)
              {
                   ft_filler(' ', flg->width - ft_len(adress) - 2, flg);
-                  ft_putstr("0x", flg);
+                  ft_putstr("0x", 2, flg);
                   ft_hex(adress, flg, base);
              }
              else
              {
-                   ft_putstr("0x", flg);
+                   ft_putstr("0x", 2, flg);
                    ft_filler('0', flg->press - ft_len(adress), flg);
                    ft_hex(adress, flg, base);
                    if(flg->press < flg->width)
