@@ -35,6 +35,10 @@ void ft_linker(flg_stc *flg)
     ft_void_pointer(va_arg(flg->arg, void *), flg, "0123456789abcdef");
   else if (flg->type == 'u')
     ft_utoi(va_arg(flg->arg, unsigned int), flg);
+  else if (flg->type == 'x')
+    ft_htoi(va_arg(flg->arg, unsigned int), flg, "0123456789abcdef");
+  else if (flg->type == 'X')
+    ft_htoi(va_arg(flg->arg, unsigned int), flg, "0123456789ABCDEF");
 }
 
 int ft_printf(const char *stroke, ...)
