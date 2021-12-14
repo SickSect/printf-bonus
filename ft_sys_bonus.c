@@ -231,6 +231,7 @@ int ft_numlen(long int n)
     }
     return(len + 1);
 }
+
 void ft_filler(char fill, int counter, flg_stc *flg)
 {
 	if(counter < 0)
@@ -244,4 +245,10 @@ void ft_filler(char fill, int counter, flg_stc *flg)
     ft_putchar(fill, flg);
     i++;
   }
+}
+
+void ft_OX(char *str, flg_stc *flg)
+{
+	ft_putchar(str[16], flg);
+	ft_putchar(str[17], flg);
 }

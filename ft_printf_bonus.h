@@ -40,10 +40,11 @@ void	ft_bzero(void *dest, size_t n);
 void	ft_nbr(unsigned long int n, flg_stc *flg);
 int ft_ulen(unsigned long int n);
 void ft_htoi(unsigned int num,flg_stc *flg, char *base);
+void ft_OX(char *str, flg_stc *flg);
 
 void ft_digit(long int n, flg_stc *flg);
-void ft_output_sign(flg_stc *flg, int n);
-int ft_if_sign(flg_stc *flg, int n);
+void ft_output_sign(flg_stc *flg, long int n);
+int ft_if_sign(flg_stc *flg, long int n);
 
 int ft_char(int ch, flg_stc *flg);
 int ft_string(char *str, flg_stc *flg);

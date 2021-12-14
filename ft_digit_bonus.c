@@ -1,6 +1,6 @@
 #include "ft_printf_bonus.h"
 
-int ft_if_sign(flg_stc *flg, int n)
+int ft_if_sign(flg_stc *flg, long int n)
 {
   if(flg->pls == 1 && n > 0)
     return(1);
@@ -11,11 +11,11 @@ int ft_if_sign(flg_stc *flg, int n)
   return (0);
 }
 
-void ft_output_sign(flg_stc *flg, int n)
+void ft_output_sign(flg_stc *flg, long int n)
 {
-  if(flg->pls == 1 && n > 0)
+  if(flg->pls == 1 && n >= 0)
     ft_putchar('+', flg);
-  else if(flg->spc == 1 && n > 0)
+  else if(flg->spc == 1 && n >= 0)
     ft_putchar(' ', flg);
   if(n < 0)
     ft_putchar('-', flg);
@@ -68,5 +68,12 @@ void ft_digit(long int n, flg_stc *flg)
         ft_putnbr(n * -1, flg);
     }
     else
-      ft_putnbr(n, flg);
+    {
+        ft_output_sign(flg, n);
+        if (n > 0)
+          ft_putnbr(n, flg);
+        else
+          ft_putnbr(n * -1, flg);
+    }
+
 }
