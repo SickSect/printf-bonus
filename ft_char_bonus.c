@@ -59,6 +59,7 @@ int ft_string(char *str, flg_stc *flg)
         }
       }
     }
+    //free(str);
     return(0);
 }
 

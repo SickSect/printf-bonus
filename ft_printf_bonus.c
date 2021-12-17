@@ -2,10 +2,18 @@
 
 void ft_catch_flg(va_list arg,flg_stc *flg, const char *str)
 {
+  int temp;
   ft_flagger(flg, str);
   if (str[flg->id] == '*')
   {
-        flg->width = va_arg(arg,int);
+        temp = va_arg(arg, int);
+        if(temp < 0)
+        {
+          flg->mns = 1;
+          flg->width = temp * -1;
+        }
+        else
+          flg->width = temp;
         flg->id += 1;
   }
   else
@@ -14,7 +22,11 @@ void ft_catch_flg(va_list arg,flg_stc *flg, const char *str)
   {
       if(str[++flg->id] == '*')
       {
-            flg->press = va_arg(arg,int);
+            temp =  va_arg(arg, int);
+            if(temp < -1)
+              flg->press = -1;
+            else
+              flg->press = temp;
             flg->id += 1;
       }
         else
@@ -63,6 +75,7 @@ int ft_printf(const char *stroke, ...)
     flg->id++;
   }
   bytes = flg->bytes;
+  ft_bzero_flg(flg);
   va_end(flg->arg);
   free(flg);
   //printf(" BYTES: %ld", flg->bytes);

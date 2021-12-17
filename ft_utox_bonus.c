@@ -65,6 +65,11 @@ void ft_hex_zro(unsigned long int num,flg_stc *flg, char *base)
 
 void ft_htoi(unsigned int num,flg_stc *flg, char *base)
 {
+  if(flg->okt == 1)
+  {
+    ft_putchar('0', flg);
+    ft_putchar(base[17], flg);
+  }
   if(flg->mns == 1)
     ft_hex_mns(num, flg, base);
   else if(flg->zro == 1)

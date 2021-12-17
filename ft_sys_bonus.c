@@ -220,7 +220,9 @@ int ft_numlen(long int n)
     int num;
 
     if (n < 0)
+		{
         num = n * -1;
+		}
     else
         num = n;
     len = 0;
