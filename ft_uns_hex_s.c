@@ -34,7 +34,7 @@ void ft_string(char *str,int *bytes)
 
   i = 0;
   if(str == NULL)
-    ft_string("(nil)", bytes);
+    ft_string("(null)", bytes);
   else
   {
     while (str[i])
@@ -45,7 +45,7 @@ void ft_string(char *str,int *bytes)
   }
 }
 
-/*
+
 void ft_void_pointer(void *ptr, int *bytes)
 {
   unsigned long int adress;
@@ -63,7 +63,7 @@ void ft_void_pointer(void *ptr, int *bytes)
     ft_hex(adress,bytes);
   }
 }
-*/
+
 
 void ft_unsigned(unsigned int n,int *bytes)
 {

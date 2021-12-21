@@ -254,3 +254,46 @@ void ft_OX(char *str, flg_stc *flg)
 	ft_putchar(str[16], flg);
 	ft_putchar(str[17], flg);
 }
+
+void ft_ohex(unsigned int n, flg_stc *flg, char *base)
+{
+  if (n < 16)
+  {
+    ft_putchar(base[n],flg);
+  }
+  else
+  {
+    ft_ohex(n / 16, flg, base);
+    ft_putchar (base[n % 16], flg);
+  }
+}
+
+int ft_xlen(unsigned long int n)
+{
+    int len;
+    unsigned long int num;
+
+    num = n;
+    len = 0;
+    while (num / 16 != 0)
+    {
+        len++;
+        num /= 16;
+    }
+    return(len + 1);
+}
+
+int ft_ulen(unsigned int n)
+{
+    int len;
+    unsigned int num;
+
+    num = n;
+    len = 0;
+    while (num / 10 != 0)
+    {
+        len++;
+        num /= 10;
+    }
+    return(len + 1);
+}

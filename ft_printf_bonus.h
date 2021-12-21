@@ -21,12 +21,14 @@ struct flg_stc
   long int bytes;
 }; typedef struct flg_stc flg_stc;
 
-int ft_printf(const char *stroke, ...);
-
-void ft_flagger(flg_stc *flg, const char *str);
+int ft_printf(const char *stroke, ...); //
+void ft_flagger(flg_stc *flg, const char *str); 
 int ft_catch_wp(const char *str, flg_stc *flg);
 char ft_find_type(const char str);
 void ft_bzero_flg(flg_stc *flg);
+int ft_ulen(unsigned int n);
+void ft_ohex(unsigned int n, flg_stc *flg, char *base);
+int ft_xlen(unsigned long int n);
 
 void	ft_putchar(int c,flg_stc *flg);
 int	    ft_atoi(const char *str);
@@ -38,7 +40,6 @@ int     ft_strlen(const char *str);
 void	ft_putnbr(long n, flg_stc *flg);
 void	ft_bzero(void *dest, size_t n);
 void	ft_nbr(unsigned int n, flg_stc *flg);
-int ft_ulen(unsigned int n);
 void ft_htoi(unsigned int num,flg_stc *flg, char *base);
 void ft_OX(char *str, flg_stc *flg);
 

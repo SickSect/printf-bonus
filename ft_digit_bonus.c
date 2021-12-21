@@ -11,16 +11,6 @@ int ft_if_sign(flg_stc *flg, long int n)
   return (0);
 }
 
-void ft_output_sign(flg_stc *flg, long int n)
-{
-  if(flg->pls == 1 && n >= 0)
-    ft_putchar('+', flg);
-  else if(flg->spc == 1 && n >= 0)
-    ft_putchar(' ', flg);
-  if(n < 0)
-    ft_putchar('-', flg);
-}
-
 void ft_digit_mns(long int n, flg_stc *flg)
 {
   ft_output_sign(flg, n);
@@ -29,9 +19,9 @@ void ft_digit_mns(long int n, flg_stc *flg)
     ft_putnbr(n, flg);
   else
     ft_putnbr(n * -1, flg);
-  if(flg->width > flg->press && flg->press > ft_numlen(n))
+  if (flg->width > flg->press && flg->press > ft_numlen(n))
     ft_filler(' ',flg->width - flg->press - ft_if_sign(flg, n), flg);
-  else if(flg->width > flg->press && flg->press <= ft_numlen(n))
+  else if (flg->width > flg->press && flg->press <= ft_numlen(n))
     ft_filler(' ',flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
   else if (flg->press == -1 || flg->press == 0)
     ft_filler(' ', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
@@ -47,13 +37,9 @@ void ft_digit_zro(long int n, flg_stc *flg)
       ft_filler(' ', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
   ft_output_sign(flg, n);
   if(flg->press > 0)
-  {
     ft_filler('0', flg->press - ft_numlen(n), flg);
-  }
   else if (flg->press < 0)
-  {
     ft_filler('0', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
-  }
   if (n > 0)
     ft_putnbr(n, flg);
   else
@@ -92,11 +78,11 @@ void ft_digit(long int n, flg_stc *flg)
       ft_digit_base(n, flg);
     else
     {
-        ft_output_sign(flg, n);
-        if (n > 0)
-          ft_putnbr(n, flg);
-        else
-          ft_putnbr(n * -1, flg);
+      ft_output_sign(flg, n);
+      if (n > 0)
+        ft_putnbr(n, flg);
+      else
+        ft_putnbr(n * -1, flg);
     }
 
 }

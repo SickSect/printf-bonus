@@ -1,25 +1,9 @@
 #include "ft_printf_bonus.h"
 
-int ft_ulen(unsigned int n)
-{
-    int len;
-    unsigned int num;
-
-    num = n;
-    len = 0;
-    while (num / 10 != 0)
-    {
-        len++;
-        num /= 10;
-    }
-    return(len + 1);
-}
-
 void ft_nbr(unsigned int n, flg_stc *flg)
 {
 	char	str[13];
 	long		i;
-
 
 	i = 0;
 	ft_bzero(str, 13);
@@ -66,13 +50,6 @@ void ft_utoi_mns(unsigned int num,flg_stc *flg)
     {
       ft_filler(' ', flg->press - ft_ulen(num), flg);
     }
-
-    /*
-    if(flg->press >= ft_numlen(num) && flg->press > flg->width)
-      ft_filler(' ', flg->press - ft_numlen(num), flg);
-    else if(flg->press < flg->width && flg->press >= ft_numlen(num))
-      ft_filler(' ', flg->width - flg->press, flg);
-      */
   }
 }
 
@@ -101,6 +78,26 @@ void ft_utoi_zro(unsigned int num,flg_stc *flg)
   }
 }
 
+void ft_utoi_base(unsigned int num,flg_stc *flg)
+{
+
+  if(flg->width > 0 && flg->width > ft_ulen(num) && flg->width > flg->press)
+  {
+    if(flg->press > ft_ulen(num))
+    {
+      ft_filler(' ', flg->width - flg->press, flg);
+      ft_filler('0', flg->press - ft_ulen(num), flg);
+    }
+    else
+      ft_filler(' ', flg->width - ft_ulen(num), flg);
+  }
+  else if (flg->press >= flg->width)
+    ft_filler('0', flg->press - ft_ulen(num), flg);
+  else if((flg->width == 0 || flg->width < flg->press)&& flg->press > 0)
+    ft_filler('0', flg->press - ft_ulen(num), flg);
+  ft_nbr(num, flg);
+}
+
 void ft_utoi(unsigned int num,flg_stc *flg)
 {
   if(flg->press == 0 && num == 0)
@@ -113,27 +110,7 @@ void ft_utoi(unsigned int num,flg_stc *flg)
   else if(flg->zro == 1)
     ft_utoi_zro(num, flg);
   else if (flg->mns == 0 && flg->zro == 0 && (flg->width >= 0 || flg->press >= 0))
-  {
-      if(flg->width > 0 && flg->width > ft_ulen(num) && flg->width > flg->press)
-      {
-        if(flg->press > ft_ulen(num))
-        {
-          ft_filler(' ', flg->width - flg->press, flg);
-          ft_filler('0', flg->press - ft_ulen(num), flg);
-        }
-        else
-          ft_filler(' ', flg->width - ft_ulen(num), flg);
-      }
-      else if (flg->press >= flg->width)
-      {
-        ft_filler('0', flg->press - ft_ulen(num), flg);
-      }
-      else if((flg->width == 0 || flg->width < flg->press)&& flg->press > 0)
-      {
-        ft_filler('0', flg->press - ft_ulen(num), flg);
-      }
-      ft_nbr(num, flg);
-  }
+    ft_utoi_base(num, flg);
   else
     ft_nbr(num, flg);
 }
