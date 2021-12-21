@@ -51,6 +51,8 @@ void ft_linker(flg_stc *flg)
     ft_htoi(va_arg(flg->arg, unsigned int), flg, "0123456789abcdef0x");
   else if (flg->type == 'X')
     ft_htoi(va_arg(flg->arg, unsigned int), flg, "0123456789ABCDEF0X");
+  else if(flg->type == '%')
+    ft_putchar('%', flg);
 }
 
 int ft_printf(const char *stroke, ...)

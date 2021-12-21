@@ -31,7 +31,7 @@ void ft_bzero_flg(flg_stc *flg)
       flg->okt = 0;
       flg->spc = 0;
       flg->zro = 0;
-      flg->width = 0;
+      flg->width = -1;
       flg->press = -1;
       flg->type = '0';
 }
@@ -58,7 +58,8 @@ char ft_find_type(const char str)
 {
       if(str == 'd' || str == 's' || str == 'x'
       || str == 'X' || str == 'i' || str == '%'
-      || str == 'u' || str == 'p' || str == 'c')
+      || str == 'u' || str == 'p' || str == 'c'
+      || str == '%')
             return (str);
       else
             return ('Q');

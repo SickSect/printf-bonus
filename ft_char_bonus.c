@@ -17,6 +17,14 @@ int ft_char(int ch,flg_stc *flg)
 
 int ft_string(char *str, flg_stc *flg)
 {
+  int f_null;
+  char c_null [] = "(null)";
+
+  if(!str)
+  {
+    str = c_null;
+    f_null = 1;
+  }
     if(flg->mns == 1)
     {
       if(flg->press == -1)
@@ -28,7 +36,15 @@ int ft_string(char *str, flg_stc *flg)
       {
         if(flg->press < ft_strlen(str))
         {
-          ft_putstr(str, flg->press, flg);
+          if (f_null != 1)
+            ft_putstr(str, flg->press, flg);
+          else if (f_null == 1 && flg->press > 6)
+          {
+            ft_filler(' ', flg->width, flg);
+            ft_putstr("(null)", 6, flg);
+          }
+          else if (f_null == 1 && flg->press < 6)
+            ft_filler(' ', flg->width, flg);
           ft_filler(' ', flg->width - flg->press, flg);
         }
         else
@@ -49,6 +65,8 @@ int ft_string(char *str, flg_stc *flg)
       {
         if(flg->press < ft_strlen(str))
         {
+          if(f_null == 1 && flg->press < ft_strlen(str))
+            return (1);
           ft_filler(' ', flg->width - flg->press, flg);
           ft_putstr(str, flg->press, flg);
         }
@@ -59,7 +77,6 @@ int ft_string(char *str, flg_stc *flg)
         }
       }
     }
-    //free(str);
     return(0);
 }
 
@@ -95,7 +112,26 @@ void ft_void_pointer(void *ptr, flg_stc *flg, char *base)
 
   adress = (unsigned long int)ptr;
   if (!adress)
-      ft_putstr("(null)", 6, flg);
+  {
+    if(flg->mns == 1)
+    {
+      ft_putstr("(nil)", 5, flg); // MAKE NULL
+      if(flg->press > flg->width)
+        ft_filler(' ', flg->press - flg->width - 6, flg);
+      else
+        ft_filler(' ', flg->width - flg->press - 6, flg);
+      return ;
+    }
+    else
+    {
+      if(flg->press > flg->width)
+        ft_filler(' ', flg->press - flg->width - 6, flg);
+      else
+        ft_filler(' ', flg->width - flg->press - 6, flg);
+      ft_putstr("(nil)", 5, flg); // MAKE NULL
+      return ;
+    }
+  }
   else
   {
         if(flg->mns == 1)

@@ -54,17 +54,6 @@ void ft_digit_zro(long int n, flg_stc *flg)
   {
     ft_filler('0', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
   }
-
-  /*
-  if (flg->press == -1)
-    ft_filler('0', flg->width - ft_numlen(n) - ft_if_sign(flg, n), flg);
-  else if(flg->press == 0)
-    ft_filler('0', flg->width - ft_numlen(n) - ft_if_sign(flg, n) - 1, flg);
-  else if(flg->width > flg->press && flg->press >= 0)
-    ft_filler('0', flg->width - flg->press - ft_numlen(n) - ft_if_sign(flg, n), flg);
-  else if (flg->press >= flg->width && flg->press >= ft_numlen(n))
-    ft_filler('0', flg->press - ft_numlen(n), flg);
-    */
   if (n > 0)
     ft_putnbr(n, flg);
   else
