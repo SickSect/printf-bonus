@@ -32,14 +32,9 @@ int ft_printf(const char *stroke, ...)
   while(stroke[i] != '\0')
   {
     if(stroke[i] == '%')
-    {
-      i++;
-      ft_linker(arg,stroke[i],&bytes);
-    }
+      ft_linker(arg,stroke[++i],&bytes);
     else
-    {
       ft_putchar(stroke[i],&bytes);
-    }
     i++;
   }
   va_end(arg);

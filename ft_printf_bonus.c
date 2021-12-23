@@ -1,50 +1,40 @@
 #include "ft_printf_bonus.h"
 
-void ft_catch_width(va_list arg,flg_stc *flg, const char *str)
+int ft_flagger(flg_stc *flg, const char *str, int cycle)
 {
-  int temp;
-
-  if (str[flg->id] == '*')
+  while(cycle == 0)
   {
-    temp = va_arg(arg, int);
-    if (temp < 0)
-    {
-      flg->mns = 1;
-      flg->width = temp * -1;
-    }
+    if(str[flg->id] == '-' && flg->mns == 0)
+      flg->mns += 1;
+    else if(str[flg->id] == '+' && flg->pls == 0)
+      flg->pls += 1;
+    else if(str[flg->id] == '#' && flg->okt == 0)
+      flg->okt += 1;
+    else if(str[flg->id] == ' ' && flg->spc == 0)
+      flg->spc += 1;
+    else if (str[flg->id] == '0' && flg->zro == 0)
+      flg->zro += 1;
     else
-      flg->width = temp;
+      cycle = 1;
     flg->id += 1;
   }
-  else
-    flg->width = ft_catch_wp(str,flg);
+  flg->id -= 1;
+  return (0);
 }
 
-void ft_catch_press(va_list arg,flg_stc *flg, const char *str)
+int ft_catch_flg(va_list arg,flg_stc *flg, const char *str)
 {
-  int temp;
-  if (str[flg->id] == '.')
-  {
-    if(str[++flg->id] == '*')
-    {
-      temp =  va_arg(arg, int);
-      if(temp < -1)
-        flg->press = -1;
-      else
-        flg->press = temp;
-      flg->id += 1;
-    }
-    else
-      flg->press = ft_catch_wp(str, flg);
-  }
-}
-
-void ft_catch_flg(va_list arg,flg_stc *flg, const char *str)
-{
-  ft_flagger(flg, str);
+  ft_flagger(flg, str, 0);
+  if((ft_check_errflg(flg)) == 1)
+    return (1);
   ft_catch_width(arg, flg, str);
+  if(str[flg->id] == '-')
+    return(1);
   ft_catch_press(arg, flg, str);
   flg->type = ft_find_type(str[flg->id]);
+  if (flg->type == 'Q')
+    return (1);
+  return (0);
 }
 
 void  ft_linker(flg_stc *flg)
@@ -71,7 +61,9 @@ int ft_printf(const char *stroke, ...)
 {
   flg_stc *flg;
   long     bytes;
+  int check;
 
+  check = 0;
   flg = malloc(sizeof(flg_stc));
   va_start (flg->arg,stroke);
   flg->id = 0;
@@ -81,15 +73,20 @@ int ft_printf(const char *stroke, ...)
     if(stroke[flg->id] == '%' && stroke[++flg->id])
     {
       ft_bzero_flg(flg);
-      ft_catch_flg(flg->arg, flg, stroke);
-      ft_linker(flg);
+      check = ft_catch_flg(flg->arg, flg, stroke);
+      if (check == 0)
+        ft_linker(flg);
+      else
+        {
+          free (flg);
+          return (0);
+        }
     }
     else
       ft_putchar(stroke[flg->id],flg);
     flg->id++;
   }
   bytes = flg->bytes;
-  ft_bzero_flg(flg);
   va_end(flg->arg);
   free(flg);
   return(bytes);

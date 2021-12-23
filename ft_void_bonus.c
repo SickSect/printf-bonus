@@ -27,14 +27,14 @@ void ft_void_mns(unsigned long int adress, flg_stc *flg, char *base)
     if(flg->press <= 0)
     {
         ft_putstr("0x", 2, flg);
-        ft_hex(adress, flg, base);
+        ft_ohex(adress, flg, base);
         ft_filler(' ',flg->width - ft_xlen(adress) - 2, flg); 
     }
     else
     {
         ft_putstr("0x", 2,flg);
         ft_filler('0',flg->press - ft_xlen(adress), flg);
-        ft_hex(adress, flg, base);
+        ft_ohex(adress, flg, base);
         if(flg->press < flg->width)
             ft_filler(' ', flg->width - flg->press - 2, flg);  
     }
@@ -47,13 +47,13 @@ void ft_void_base(unsigned long int adress, flg_stc *flg, char *base)
     {
         ft_filler(' ', flg->width - ft_xlen(adress) - 2, flg);
         ft_putstr("0x", 2, flg);
-        ft_hex(adress, flg, base);
+        ft_ohex(adress, flg, base);
     }
     else
     {
         ft_putstr("0x", 2, flg);
         ft_filler('0', flg->press - ft_xlen(adress), flg);
-        ft_hex(adress, flg, base);
+        ft_ohex(adress, flg, base);
         if(flg->press < flg->width)
             ft_filler(' ', flg->width - flg->press - 2, flg);
     }

@@ -10,28 +10,12 @@ void ft_output_sign(flg_stc *flg, long int n)
     ft_putchar('-', flg);
 }
 
-void ft_flagger(flg_stc *flg, const char *str)
+int ft_check_errflg(flg_stc *flg)
 {
-  int cycle;
-
-  cycle = 0;
-  while(cycle == 0)
-  {
-    if(str[flg->id] == '-')
-      flg->mns = 1;
-    else if(str[flg->id] == '+')
-      flg->pls = 1;
-    else if(str[flg->id] == '#')
-      flg->okt = 1;
-    else if(str[flg->id] == ' ')
-      flg->spc = 1;
-    else if (str[flg->id] == '0')
-      flg->zro = 1;
-    else
-      cycle = 1;
-    flg->id += 1;
-  }
-  flg->id -= 1;
+  if(flg->mns > 1 || flg->pls > 1 || flg->zro > 1
+    || flg->okt > 1 || flg->spc > 1)
+    return (1);
+  return (0);
 }
 
 void ft_bzero_flg(flg_stc *flg)
@@ -52,9 +36,13 @@ int ft_catch_wp(const char *str, flg_stc *flg)
     int ret;
 
     size = ft_strdup("\0");
-    if(str[flg->id] <= 48 && str[flg->id] >= 57)
+    /*
+    if(str[str->id] == '-')
+      flg->mns += 1;
+      */
+    if(str[flg->id] <= '0' && str[flg->id] >= '9')
       return (0);
-    while(str[flg->id] >= 48 && str[flg->id] <= 57)
+    while(str[flg->id] >= '0' && str[flg->id] <= '9')
     {
       size= ft_strjoin_char(size,str[flg->id]);
       flg->id += 1;
