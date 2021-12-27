@@ -45,7 +45,7 @@ void	ft_str_mns(char *str, t_flg_stc *flg, int f_null)
 	}
 }
 
-void	ft_str_base(char *str, t_flg_stc *flg, int f_null)
+void	ft_str_base(char *str, t_flg_stc *flg)
 {
 	if (flg->press == -1)
 	{
@@ -78,12 +78,12 @@ int	ft_string(char *str, t_flg_stc *flg)
 		if (flg->mns == 1)
 			ft_str_mns("(null)", flg, f_null);
 		else
-			ft_str_base("(null)", flg, f_null);
+			ft_str_base("(null)", flg);
 		return (0);
 	}
 	if (flg->mns == 1)
 		ft_str_mns(str, flg, f_null);
 	else
-		ft_str_base(str, flg, f_null);
+		ft_str_base(str, flg);
 	return (0);
 }
