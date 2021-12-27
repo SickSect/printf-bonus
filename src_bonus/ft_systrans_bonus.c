@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ugina <ugina@student.21-school.r>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 15:07:18 by ugina             #+#    #+#             */
+/*   Updated: 2021/12/27 15:07:33 by ugina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
 void	ft_catch_width(va_list arg, t_flg_stc *flg, const char *str)
@@ -13,7 +24,7 @@ void	ft_catch_width(va_list arg, t_flg_stc *flg, const char *str)
 			flg->width = temp * -1;
 		}
 		else
-		flg->width = temp;
+			flg->width = temp;
 		flg->id += 1;
 	}
 	else
@@ -30,7 +41,7 @@ void	ft_catch_press(va_list arg, t_flg_stc *flg, const char *str)
 		{
 			temp = va_arg(arg, int);
 			if (temp < -1)
-			flg->press = -1;
+				flg->press = -1;
 			else
 				flg->press = temp;
 			flg->id += 1;

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ugina <ugina@student.21-school.r>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 15:07:18 by ugina             #+#    #+#             */
+/*   Updated: 2021/12/27 15:07:33 by ugina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
 void	ft_hex_mns(unsigned int num, t_flg_stc *flg, char *base)
@@ -79,7 +90,7 @@ void	ft_htoi(unsigned int num, t_flg_stc *flg, char *base)
 		ft_filler (' ', flg->width, flg);
 		return ;
 	}
-	if (flg->okt == 1)
+	if (flg->okt == 1 && num != 0)
 	{
 		ft_putchar('0', flg);
 		ft_putchar(base[17], flg);

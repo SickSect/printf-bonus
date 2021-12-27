@@ -1,4 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ugina <ugina@student.21-school.r>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 15:07:18 by ugina             #+#    #+#             */
+/*   Updated: 2021/12/27 15:07:33 by ugina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_printf_bonus.h"
+
+void	ft_str_mns_cut(char *str, t_flg_stc *flg, int f_null)
+{
+	if (f_null != 1)
+		ft_putstr(str, flg->press, flg);
+	else if (f_null == 1)
+	{
+		ft_filler(' ', flg->width - flg->press, flg);
+		if (flg->press > 6)
+			ft_putstr(str, 6, flg);
+		else
+			ft_putstr(str, flg->press, flg);
+	}
+	ft_filler(' ', flg->width - flg->press, flg);
+}
 
 void	ft_str_mns(char *str, t_flg_stc *flg, int f_null)
 {
@@ -10,17 +36,7 @@ void	ft_str_mns(char *str, t_flg_stc *flg, int f_null)
 	else
 	{
 		if (flg->press < ft_strlen(str))
-		{
-			if (f_null != 1)
-				ft_putstr(str, flg->press, flg);
-			else if (f_null == 1)
-			{
-				ft_filler(' ', flg->width, flg);
-				if (flg->press > 6)
-					ft_putstr("(null)", 6, flg);
-			}
-			ft_filler(' ', flg->width - flg->press, flg);
-		}
+			ft_str_mns_cut(str, flg, f_null);
 		else
 		{
 			ft_putstr(str, ft_strlen(str), flg);
@@ -40,8 +56,6 @@ void	ft_str_base(char *str, t_flg_stc *flg, int f_null)
 	{
 		if (flg->press < ft_strlen(str))
 		{
-			if (f_null == 1 && flg->press < ft_strlen(str))
-				return ;
 			ft_filler(' ', flg->width - flg->press, flg);
 			ft_putstr(str, flg->press, flg);
 		}

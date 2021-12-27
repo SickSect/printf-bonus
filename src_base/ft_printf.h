@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ugina <ugina@student.21-school.r>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 20:13:12 by ugina             #+#    #+#             */
-/*   Updated: 2021/10/16 20:17:11 by ugina            ###   ########.fr       */
+/*   Created: 2021/12/27 15:07:18 by ugina             #+#    #+#             */
+/*   Updated: 2021/12/27 15:07:33 by ugina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_PRINTF_H
@@ -23,11 +23,11 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
+int		ft_printf(const char *stroke, ...);
 void	ft_bzero(void *s, size_t n);
 void	ft_string(char *str, int *bytes);
 void	ft_putchar(int c, int *bytes);
 void	ft_digit(int n, int *bytes);
-int		ft_printf(const char *, ...);
 void	ft_linker(va_list arg, char type, int *bytes);
 void	ft_unsigned(unsigned int n, int *bytes);
 void	ft_hex(unsigned long int n, int *bytes);

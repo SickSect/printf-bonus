@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ugina <ugina@student.21-school.r>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 20:13:12 by ugina             #+#    #+#             */
-/*   Updated: 2021/10/16 20:17:11 by ugina            ###   ########.fr       */
+/*   Created: 2021/12/27 15:07:18 by ugina             #+#    #+#             */
+/*   Updated: 2021/12/27 15:07:33 by ugina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -61,8 +61,8 @@ void	ft_void_pointer(void *ptr, int *bytes)
 	adress = (unsigned long int)ptr;
 	if (!adress)
 	{
-		write (1, "(nil)", 5);
-		(*bytes) += 5;
+		write (1, "0x0", 3);
+		(*bytes) += 3;
 	}
 	else
 	{
