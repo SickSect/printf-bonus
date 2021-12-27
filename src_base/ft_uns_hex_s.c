@@ -32,7 +32,7 @@ void	ft_hex_x(unsigned long int n, int *bytes)
 	}
 	else
 	{
-		ft_hex_X(n / 16, bytes);
+		ft_hex_x(n / 16, bytes);
 		ft_putchar (HEX_X[n % 16], bytes);
 	}
 }

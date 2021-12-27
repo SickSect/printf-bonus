@@ -1,6 +1,6 @@
 #include "ft_printf_bonus.h"
 
-void ft_void_null(flg_stc *flg)
+void ft_void_null(t_flg_stc *flg)
 {
   if(flg->mns == 1)
     {
@@ -22,7 +22,7 @@ void ft_void_null(flg_stc *flg)
     }
 }
 
-void ft_void_mns(unsigned long int adress, flg_stc *flg, char *base)
+void ft_void_mns(unsigned long int adress, t_flg_stc *flg, char *base)
 {
     if(flg->press <= 0)
     {
@@ -40,7 +40,7 @@ void ft_void_mns(unsigned long int adress, flg_stc *flg, char *base)
     }
 }
 
-void ft_void_base(unsigned long int adress, flg_stc *flg, char *base)
+void ft_void_base(unsigned long int adress, t_flg_stc *flg, char *base)
 {
 
     if(flg->press <= 0)
@@ -59,7 +59,7 @@ void ft_void_base(unsigned long int adress, flg_stc *flg, char *base)
     }
 }
 
-void ft_void_pointer(void *ptr, flg_stc *flg, char *base)
+void ft_void_pointer(void *ptr, t_flg_stc *flg, char *base)
 {
   unsigned long int adress;
 

@@ -5,7 +5,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-struct	flg_stc
+struct s_flg_stc
 {
 	va_list		arg;
 	int			id;
@@ -19,36 +19,36 @@ struct	flg_stc
 	char		type;
 	long int	bytes;
 };
-typedef struct flg_stc	flg_stc;
+typedef struct s_flg_stc	t_flg_stc;
 int		ft_printf(const char *stroke, ...);
-int		ft_catch_wp(const char *str, flg_stc *flg);
+int		ft_catch_wp(const char *str, t_flg_stc *flg);
 char	ft_find_type(const char str);
-void	ft_bzero_flg(flg_stc *flg);
+void	ft_bzero_flg(t_flg_stc *flg);
 int		ft_ulen(unsigned int n);
 int		ft_xlen(unsigned long int n);
-void	ft_catch_width(va_list arg, flg_stc *flg, const char *str);
-void	ft_catch_press(va_list arg, flg_stc *flg, const char *str);
-void	ft_putchar(int c, flg_stc *flg);
+void	ft_catch_width(va_list arg, t_flg_stc *flg, const char *str);
+void	ft_catch_press(va_list arg, t_flg_stc *flg, const char *str);
+void	ft_putchar(int c, t_flg_stc *flg);
 int		ft_atoi(const char *str);
-void	ft_putstr(char *s, int p, flg_stc *flg);
+void	ft_putstr(char *s, int p, t_flg_stc *flg);
 char	*ft_strdup(const char *str_s);
 char	*ft_strjoin_char(char *s1, char s2);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(const char *str);
-void	ft_putnbr(long n, flg_stc *flg);
+void	ft_putnbr(long n, t_flg_stc *flg);
 void	ft_bzero(void *dest, size_t n);
-void	ft_nbr(unsigned int n, flg_stc *flg);
-void	ft_htoi(unsigned int num, flg_stc *flg, char *base);
-void	ft_OX(char *str, flg_stc *flg);
+void	ft_nbr(unsigned int n, t_flg_stc *flg);
+void	ft_htoi(unsigned int num, t_flg_stc *flg, char *base);
+void	ft_ox(char *str, t_flg_stc *flg);
 int		ft_isdigit(int ch);
-void	ft_digit(long int n, flg_stc *flg);
-void	ft_output_sign(flg_stc *flg, long int n);
-int		ft_if_sign(flg_stc *flg, long int n);
-int		ft_char(int ch, flg_stc *flg);
-int		ft_string(char *str, flg_stc *flg);
-void	ft_filler(char fill, int counter, flg_stc *flg);
-void	ft_ohex(unsigned long int n, flg_stc *flg, char *base);
-void	ft_void_pointer(void *ptr, flg_stc *flg, char *base);
-void	ft_utoi(unsigned int num, flg_stc *flg);
+void	ft_digit(long int n, t_flg_stc *flg);
+void	ft_output_sign(t_flg_stc *flg, long int n);
+int		ft_if_sign(t_flg_stc *flg, long int n);
+int		ft_char(int ch, t_flg_stc *flg);
+int		ft_string(char *str, t_flg_stc *flg);
+void	ft_filler(char fill, int counter, t_flg_stc *flg);
+void	ft_ohex(unsigned long int n, t_flg_stc *flg, char *base);
+void	ft_void_pointer(void *ptr, t_flg_stc *flg, char *base);
+void	ft_utoi(unsigned int num, t_flg_stc *flg);
 int		ft_numlen(long int n);
 #endif

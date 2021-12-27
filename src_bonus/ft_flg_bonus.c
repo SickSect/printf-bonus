@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ugina <ugina@student.21-school.r>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 20:13:12 by ugina             #+#    #+#             */
-/*   Updated: 2021/10/16 20:17:11 by ugina            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
-void	ft_output_sign(flg_stc *flg, long int n)
+void	ft_output_sign(t_flg_stc *flg, long int n)
 {
 	if (flg->pls == 1 && n >= 0)
 		ft_putchar('+', flg);
@@ -21,7 +10,7 @@ void	ft_output_sign(flg_stc *flg, long int n)
 		ft_putchar('-', flg);
 }
 
-void	ft_bzero_flg(flg_stc *flg)
+void	ft_bzero_flg(t_flg_stc *flg)
 {
 	flg->mns = 0;
 	flg->pls = 0;
@@ -33,7 +22,7 @@ void	ft_bzero_flg(flg_stc *flg)
 	flg->type = '0';
 }
 
-int	ft_catch_wp(const char *str, flg_stc *flg)
+int	ft_catch_wp(const char *str, t_flg_stc *flg)
 {
 	char	*size;
 	int		ret;

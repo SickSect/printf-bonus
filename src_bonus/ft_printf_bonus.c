@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ugina <ugina@student.21-school.r>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/16 20:13:12 by ugina             #+#    #+#             */
+/*   Updated: 2021/10/16 20:17:11 by ugina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_printf_bonus.h"
 
-void	ft_flagger(flg_stc *flg, const char *str)
+void	ft_flagger(t_flg_stc *flg, const char *str)
 {
 	int	cycle;
 
@@ -24,7 +35,7 @@ void	ft_flagger(flg_stc *flg, const char *str)
 	flg->id -= 1;
 }
 
-void	ft_catch_flg(va_list arg, flg_stc *flg, const char *str)
+void	ft_catch_flg(va_list arg, t_flg_stc *flg, const char *str)
 {
 	ft_flagger(flg, str);
 	ft_catch_width(arg, flg, str);
@@ -32,7 +43,7 @@ void	ft_catch_flg(va_list arg, flg_stc *flg, const char *str)
 	flg->type = ft_find_type(str[flg->id]);
 }
 
-void	ft_linker(flg_stc *flg)
+void	ft_linker(t_flg_stc *flg)
 {
 	if (flg->type == 'd' || flg->type == 'i')
 		ft_digit(va_arg(flg->arg, int), flg);
@@ -54,10 +65,10 @@ void	ft_linker(flg_stc *flg)
 
 int	ft_printf(const char *stroke, ...)
 {
-	flg_stc	*flg;
-	long	bytes;
+	t_flg_stc	*flg;
+	long		bytes;
 
-	flg = malloc(sizeof(flg_stc));
+	flg = malloc(sizeof(t_flg_stc));
 	if (!flg)
 		return (0);
 	va_start (flg->arg, stroke);
